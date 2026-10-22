@@ -1,0 +1,64 @@
+OpenVmHalo2Verifier: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+--- TEST: empty publicValues + empty proofData, commits 1/2
+exit=1
+Error: execution reverted: InvalidPublicValuesLength(32, 0)
+
+Context:
+- server returned an error response: error code 3: execution reverted: `JQ , data: "0x604a511500000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000"
+--- TEST: PV 32B, proofData 100B (bad length), commits 1/2
+exit=1
+Error: execution reverted: InvalidProofDataLength(1760, 100)
+
+Context:
+- server returned an error response: error code 3: execution reverted: custom error 0x5b78f998: 00000000000000000000000000000000000000000000000000000000000006e00000000000000000000000000000000000000000000000000000000000000064, data: "0x5b78f99800000000000000000000000000000000000000000000000000000000000006e00000000000000000000000000000000000000000000000000000000000000064"
+--- TEST: PV 31B, proofData 1760B, commits 1/2
+exit=1
+Error: execution reverted: InvalidPublicValuesLength(32, 31)
+
+Context:
+- server returned an error response: error code 3: execution reverted: `JQ , data: "0x604a51150000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001f"
+--- TEST: appExeCommit == MODULUS
+exit=1
+Error: execution reverted: InvalidAppExeCommit(0x30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001)
+
+Context:
+- server returned an error response: error code 3: execution reverted: custom error 0xf6872d06: 30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001, data: "0xf6872d0630644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001"
+--- TEST: appVmCommit == MODULUS (exe=1)
+exit=1
+Error: execution reverted: InvalidAppVmCommit(0x30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001)
+
+Context:
+- server returned an error response: error code 3: execution reverted: custom error 0xe1c033d0: 30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001, data: "0xe1c033d030644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001"
+--- TEST: appExeCommit == 0xff..ff
+exit=1
+Error: execution reverted: InvalidAppExeCommit(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+
+Context:
+- server returned an error response: error code 3: execution reverted: custom error 0xf6872d06: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, data: "0xf6872d06ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+--- TEST: KEY: commits 1/2, PV=32x00, proofData=1760x00
+exit=1
+Error: execution reverted: ProofVerificationFailed
+
+Context:
+- server returned an error response: error code 3: execution reverted: custom error 0xd611c318, data: "0xd611c318"
+--- GAS: KEY as tx (gasUsed on failure)
+send err: 'status'
+--- TEST: commits 0/0, same zero payload
+exit=1
+Error: execution reverted: ProofVerificationFailed
+
+Context:
+- server returned an error response: error code 3: execution reverted: custom error 0xd611c318, data: "0xd611c318"
+--- TEST: commits MODULUS-1 / MODULUS-1, zero payload
+exit=1
+Error: execution reverted: ProofVerificationFailed
+
+Context:
+- server returned an error response: error code 3: execution reverted: custom error 0xd611c318, data: "0xd611c318"
+--- TEST: proofData starts 0xdeadbeef + rest zero, commits 1/2
+exit=1
+Error: execution reverted: panic: assertion failed (0x01)
+
+Context:
+- server returned an error response: error code 3: execution reverted: panic: assertion failed (0x01), data: "0x4e487b710000000000000000000000000000000000000000000000000000000000000001"
+ADDR=0x5FbDB2315678afecb367f032d93F642f64180aa3

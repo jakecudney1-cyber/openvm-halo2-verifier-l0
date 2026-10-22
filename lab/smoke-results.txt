@@ -1,0 +1,22 @@
+== chain ==
+31337
+plonk rc.3 raw verifier: 0x5fbdb2315678afecb367f032d93f642f64180aa3
+plonk v0.9.8 raw verifier: 0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+ZkEvmVerifierV2: 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
+ZkEvmVerifierV1: 0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9
+ZkEvmVerifierPostEuclid (digest2=0, exploratory): 0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9
+MultipleVersionRollupVerifier(v3->V2): 0x5FC8d32690cc91D4c39d9d3abcBD16989F875707
+publicInput: 0x000000000008275000000002218fb805ed664fa873760635dc7919340e6117414de23f875001a30f9a7d07ecabacadaeaf00000000000000000000000000000000000000000000000000000024052537cb89a29164a97a45fae4ae485c2189391ad94ee766069ef2fcd8ada00157c2e6aa1d7b93d4c190bcc7bf26dc231c9027936192c8bdc74158a061114eb06e9467488ccedb45f102fbc8e6f9581ff0b21177b7394229dab67e572bfff1
+proof rc.3 bytes: 2144, proof v0.9.8 bytes: 1760
+--- TEST: V2 valid vector (cast call)
+exit=0
+0x
+--- TEST: V2 valid vector (cast send, gas)
+status: 0x1 gasUsed: 375335
+--- TEST: V2 valid vector via MultipleVersionRollupVerifier.verifyBundleProof(3,0,...)
+exit=0
+0x
+--- TEST: V1 valid vector v0.9.8 (cast call)
+exit=0
+0x
+--- TEST: V1 valid vector (cast send, gas)
